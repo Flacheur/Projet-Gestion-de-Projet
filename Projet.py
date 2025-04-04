@@ -69,3 +69,22 @@ def effectuer_achat():
         print("Commande validée. Numéro de commande :", commande["numero"])
     else:
         print("Commande annulée.")
+
+
+
+# Fonction pour vérifier une commande
+
+
+def verifier_commande():
+    numero = int(input("Entrez le numéro de commande : "))
+    commande_trouvee = False
+    for commande in commandes:
+        if commande["numero"] == numero:
+            print("Commande n°", commande["numero"])
+            print("Plats :", ", ".join([plat["nom"] for plat in commande["plats"]]))
+            print("Heure :", commande["heure"])
+            print("Statut :", commande["statut"])
+            commande_trouvee = True
+            break
+    if not commande_trouvee:
+        print("Commande non trouvée.")
