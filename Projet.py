@@ -141,3 +141,25 @@ def valider_commande():
                 print("Cette commande à été annulée")
             return
     print("Commande non trouvée.")
+
+
+#Fonction qui contribue à ce que le restaurateur puisse ajouter des plats à son menu
+
+def ajouter_plat():
+    nom = input("Renseignez le nom du plat à ajouter : ")
+    prix = float(input("Renseignez le prix du plat à ajouter : "))
+    allergenes = []
+    if input("Ce plat contient-il des allergenes ? (o/n) : ") == "o" :
+        while True:
+            allergene = input("Renseignez un des allergenes du plat (STOP pour finir de renseigner les allergenes) : ")
+            if allergene == "STOP":
+                break
+            else :
+                allergenes.append(allergene)
+    plat = {
+        "nom" : nom, 
+        "prix" : prix,
+        "allergenes" : allergenes
+    }
+    plats.append(plat)
+    return
