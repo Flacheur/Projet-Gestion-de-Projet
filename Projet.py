@@ -88,3 +88,23 @@ def verifier_commande():
             break
     if not commande_trouvee:
         print("Commande non trouvée.")
+
+
+# Fonction pour annuler une commande
+
+
+def annuler_commande():
+    numero = int(input("Entrez le numéro de commande : "))
+    for commande in commandes:
+        if commande["numero"] == numero:
+            if commande["statut"] == 'en préparation':
+                temps_ecoule = (datetime.datetime.now() - commande["heure"]).total_seconds()
+                if temps_ecoule > 120:
+                    commande["statut"] = 'annulée'
+                    print("Commande annulée.")
+                else:
+                    print("Impossible d'annuler. Moins de 2 minutes se sont écoulées.")
+            else:
+                print("Impossible d'annuler. La commande n'est plus en préparation.")
+            return
+    print("Commande non trouvée.")
