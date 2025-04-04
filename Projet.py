@@ -193,3 +193,17 @@ def modifier_plat():
     
     if not plat_trouve:
         print("Plat non trouvé.")
+
+
+#Fonction qui permet de supprimer un plat 
+
+def supprimer_plat():
+    nom_plat = input("Renseignez le nom du plat à supprimer : ")
+    plat_trouve = False
+    for plat in plats :
+        if plat["nom"] == nom_plat :
+            plat_trouve = True
+            plats.remove(plat)
+    
+    if not plat_trouve:
+        print("Plat non trouvé.")
