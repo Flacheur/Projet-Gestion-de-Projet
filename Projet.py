@@ -108,3 +108,36 @@ def annuler_commande():
                 print("Impossible d'annuler. La commande n'est plus en préparation.")
             return
     print("Commande non trouvée.")
+
+
+#Fonction pour afficher la commande demandé
+
+def afficher_commandes():
+    commande_a_preparer = False
+    for commande in commandes:
+        temps_ecoule = (datetime.datetime.now() - commande["heure"]).total_seconds()
+        if commande["statut"] == 'en préparation':
+            print("Commande n°", commande["numero"])
+            print("Plats :", ", ".join([plat["nom"] for plat in commande["plats"]]))
+            print("Heure :", commande["heure"])
+            print("Temps écoulé :", temps_ecoule)
+            commande_a_preparer = True
+    if not commande_a_preparer:
+        print("Pas de commandes à préparer.")
+
+
+#Fonction pour permettre au restaurateur de valider une commande
+
+
+def valider_commande():
+    numero = int(input("Entrez le numéro de commande : "))
+    for commande in commandes:
+        if commande["numero"] == numero:
+            if commande["statut"] == 'en préparation':
+                commande["statut"] = "livrée"
+            elif commande["statut"] == "livrée" :
+                print("Cette commande à déja été livrée")
+            elif commande["statut"] == "annulée" :
+                print("Cette commande à été annulée")
+            return
+    print("Commande non trouvée.")
