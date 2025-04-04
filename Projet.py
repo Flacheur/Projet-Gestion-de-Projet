@@ -247,3 +247,64 @@ def supprimer_plat():
     
     if not plat_trouve:
         print("Plat non trouvé.")
+
+
+# Menu principal
+
+
+while True:
+    print("\n1. Afficher les plats")
+    print("2. Effectuer un achat")
+    print("3. Vérifier une commande")
+    print("4. Annuler une commande")
+    print("5. Quitter")
+    print("6. Passer en mode restaurateur")
+    
+    choix = input("Choisissez une option : ")
+    
+    if choix == '1':
+        afficher_plats()
+    elif choix == '2':
+        effectuer_achat()
+    elif choix == '3':
+        verifier_commande()
+    elif choix == '4':
+        annuler_commande()
+    elif choix == '5':
+        break
+    elif choix == '6':
+        mdp = input("Renseignez le mot de passe : ")
+        if mdp == "Admin123" :
+            while True:
+                print("\n1. Afficher les commandes")
+                print("2. Envoyer une commande")
+                print("3. Ajouter un plat à la carte")
+                print("4. Modifier un plat de la carte")
+                print("5. Supprimer un plat de la carte")
+                print("6. Voir le bilan")
+                print("7. Passer en mode client")
+                choix = input("Choisissez une option : ")
+    
+                if choix == '1':
+                    afficher_commandes()
+                elif choix == '2':
+                    valider_commande()
+                elif choix == '3':
+                    ajouter_plat()
+                elif choix == '4':
+                    modifier_plat()
+                elif choix == '5':
+                    supprimer_plat()
+                elif choix == '6':
+                    bilan()
+                elif choix == '7':
+                    break
+                else:
+                    print("Option invalide.")
+        else:
+            print("Mot de passe incorrect")
+            
+    else:
+        print("Option invalide.")
+
+print("Merci d'avoir utilisé notre service !")
