@@ -163,3 +163,33 @@ def ajouter_plat():
     }
     plats.append(plat)
     return
+
+
+# Fonction qui modifie un plat, lorsque le restaurateur en a besoin
+
+
+def modifier_plat():
+    nom_plat = input("Renseignez le nom du plat à modifier : ")
+    plat_trouve = False
+    for plat in plats :
+        if plat["nom"] == nom_plat :
+            plat_trouve = True
+            modification = input("Quelle est la modification à effectuer ? (nom/prix/allergenes)")
+            if modification == "nom" :
+                new_nom = input("Quel est le nouveau nom de ce plat ?")
+                plat["nom"] = new_nom
+            elif modification == "prix" :
+                new_prix = float(input("Quel est le nouveau prix de ce plat ?"))
+                plat["prix"] = new_prix
+            elif modification == "allergenes" :
+                new_allergenes = []
+                while True:
+                    new_allergene = input("Renseignez un des allergenes du plat (STOP pour finir de renseigner les allergenes) : ")
+                    if new_allergene == "STOP":
+                        break
+                    else :
+                        new_allergenes.append(new_allergene)
+                plat["allergenes"] = new_allergenes
+    
+    if not plat_trouve:
+        print("Plat non trouvé.")
