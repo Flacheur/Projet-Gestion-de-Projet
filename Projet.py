@@ -143,6 +143,46 @@ def valider_commande():
     print("Commande non trouvée.")
 
 
+#Fonction permettatant au restaurateur d'avoir un bilan de ses commandes
+
+def bilan():
+    nb_commande = 0
+    commandes_livree = 0
+    commandes_retractee = 0
+    Ca_av_retrait = 0
+    Ca = 0
+    pertes = 0
+    for commande in commandes:
+        nb_commande += 1
+        Ca_av_retrait += commande["prix"]
+        if commande["statut"] == "livrée" :
+            commandes_livree += 1
+            Ca += commande["prix"]
+        if commande["statut"] == "annulée" :
+            commandes_retractee += 1
+            pertes += commande["prix"]
+    while True:
+        print("\n1. Afficher le bilan total")
+        print("2. Afficher le bilan des commandes livrées")
+        print("3. Afficher le bilan des commandes annulées")
+        print("4. Retour")
+        
+
+        choix = input("Choisissez une option : ")
+
+        if choix == '1':
+            print(nb_commande, " commandes ont été effectué sur le site pour un total de ", Ca_av_retrait, " €.")
+        elif choix == '2':
+            print(commandes_livree, " commandes ont été livrées pour un total de ", Ca, " €.")
+        elif choix == '3':
+            print(commandes_retractee, " commandes ont été rétractées ce qui repésente un non-gain de ", pertes, " €.")
+        elif choix == '4':
+            return
+        else:
+            print("Option invalide.")
+
+
+
 #Fonction qui contribue à ce que le restaurateur puisse ajouter des plats à son menu
 
 def ajouter_plat():
